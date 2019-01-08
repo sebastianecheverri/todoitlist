@@ -1,0 +1,38 @@
+<table class="">
+  <hr>
+  <tr>
+    <th> <p> <span>Title:</span> </p> </th>
+    <td> <%=  @busqueda["title"] %> </td>
+  </tr>
+  <tr>
+    <th> <p> <span>ID:</span> </p> </th>
+    <td> <%=  @busqueda["id"] %> </td>
+  </tr>
+  <tr>
+    <th> <p> <span>Done:</span> </p> </th>
+    <td> <%=  @busqueda["done"] %> </td>
+  </tr>
+  <tr>
+    <th> <p> <span>Creation date:</span> </p> </th>
+    <td> <%=  @busqueda["created_at"] %> </td>
+  </tr>
+  <tr>
+    <th> <p> <span>Updateted at:</span> </p> </th>
+    <td> <%=  @busqueda["updated_at"] %> </td>
+  </tr>
+  <tr>
+    <td class="buttons" colspan="2">
+      <br>
+      <form action="/complete?id=<%= @busqueda['id'] %>" method="post">
+        <input type="submit" value="Complete" class="btn btn-success">
+      </form>
+      <form action="/delete?id=<%= @busqueda['id'] %>" method="post">
+        <input type="submit" value="Delete" class="btn btn-danger">
+      </form>
+    </td>
+  </tr>
+</table>
+
+<form class="" action="/" method="get">
+  <input type="submit" name="" class="btn btn-secondary" value="Back">
+</form>

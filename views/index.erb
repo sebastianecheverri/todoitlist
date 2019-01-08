@@ -1,0 +1,112 @@
+<h1>ToDo It!!!</h1>
+<br>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <h2>New Task?</h2>
+
+      <form class="form-inline" action="/create" method="post">
+        <div class="form-group mb-2">
+          <input class="form-control" type="text" name="titulo" placeholder="New task">
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+          <button class="btn btn-success mb-2" type="submit" name="">Create</button>
+        </div>
+      </form>
+
+      <form class="form-inline" action="/find" method="post">
+        <div class="form-group mb-2">
+          <input class="form-control" type="text" name="id" placeholder="Task's id">
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+          <button class="btn btn-info mb-2" type="submit" name="">Find</button>
+        </div>
+      </form>
+
+    </div>
+    <div class="col-8">
+      <div class="row">
+        <div class="col">
+          <h2>To do </h2>
+              <% @tareas.each do |tarea| %>
+                <table class="">
+                  <% if tarea["done"]==false %>
+                    <hr>
+                    <tr>
+                      <th> <p> <span>Title:</span> </p> </th>
+                      <td> <%=  tarea["title"] %> </td>
+                    </tr>
+                    <tr>
+                      <th> <p> <span>ID:</span> </p> </th>
+                      <td> <%=  tarea["id"] %> </td>
+                    </tr>
+                    <tr>
+                      <th> <p> <span>Done:</span> </p> </th>
+                      <td> <%=  tarea["done"] %> </td>
+                    </tr>
+                    <tr>
+                      <th> <p> <span>Creation date:</span> </p> </th>
+                      <td> <%=  tarea["created_at"] %> </td>
+                    </tr>
+                    <tr>
+                      <th> <p> <span>Updateted at:</span> </p> </th>
+                      <td> <%=  tarea["updated_at"] %> </td>
+                    </tr>
+                    <tr>
+                      <td class="buttons" colspan="2">
+                        <form action="/complete?id=<%= tarea['id'] %>" method="post">
+                          <input type="submit" value="Complete" class="btn btn-success">
+                        </form>
+                        <form action="/delete?id=<%= tarea['id'] %>" method="post">
+                          <input type="submit" value="Delete" class="btn btn-danger">
+                        </form>
+                      </td>
+                    </tr>
+                  <% end %>
+                </table>
+              <% end %>
+          <hr>
+        </div>
+        <div class="col">
+          <h2>Done</h2>
+            <% @tareas.each do |tarea| %>
+              <table class="">
+                <% if tarea["done"]==true %>
+                <hr>
+                <tr>
+                  <th><p><span>Title:</span></p></th>
+                  <td><%=  tarea["title"] %></td>
+                </tr>
+                <tr>
+                  <th><p><span>ID:</span></p></th>
+                  <td><%=  tarea["id"] %></td>
+                </tr>
+                <tr>
+                  <th><p><span>Done:</span></p></th>
+                  <td><%=  tarea["done"] %></td>
+                </tr>
+                <tr>
+                  <th><p><span>Creation date:</span></p></th>
+                  <td><%=  tarea["created_at"] %></td>
+                </tr>
+                <tr>
+                  <th><p><span>Updateted at:</span></p></th>
+                  <td><%=  tarea["updated_at"] %></td>
+                </tr>
+                <tr>
+                  <td class="buttons" colspan="2">
+                    <form action="/delete?id=<%= tarea['id'] %>" method="post">
+                      <input type="submit" value="Delete" class="btn btn-danger">
+                    </form>
+                  </td>
+                </tr>
+                <% end %>
+              </table>
+            <% end %>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
